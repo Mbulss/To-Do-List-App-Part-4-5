@@ -1,4 +1,14 @@
-@import "tailwindcss";
-@plugin "daisyui" {
-  themes: light --default;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --default: light;
+  }
+}
+
+body {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #d1fae5 0%, #bbf7d0 100%);
 }

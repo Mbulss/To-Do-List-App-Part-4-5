@@ -12,18 +12,20 @@ import NavbarComponent from "./components/NavbarComponent";
 function App() {
   return (
     <TodoProvider>
-      <div className="min-h-screen bg-gray-100">
+      <div data-theme="light" className="min-h-screen bg-base-100">
         <Toaster position="top-right" />
         <NavbarComponent />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/signin" element={<LoginPage />} />
-          <Route path="/signup" element={<SignupPage />} />
-          <Route path="/user/activate/:token?" element={<ActivationPage />} />
-          <Route path="/signup-success" element={<SignupConfirmationPage />} />
-          <Route path="/user-info" element={<UserInfoComponent />} />
-          <Route path="*" element={<Navigate to="/signin" />} />
-        </Routes>
+        <main className="container mx-auto px-4 py-8">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/signin" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/user/activate/:token?" element={<ActivationPage />} />
+            <Route path="/signup-success" element={<SignupConfirmationPage />} />
+            <Route path="/user-info" element={<UserInfoComponent />} />
+            <Route path="*" element={<Navigate to="/signin" />} />
+          </Routes>
+        </main>
       </div>
     </TodoProvider>
   );

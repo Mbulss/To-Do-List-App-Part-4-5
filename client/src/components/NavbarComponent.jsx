@@ -31,58 +31,41 @@ const NavbarComponent = () => {
   }
 
   return (
-    <nav className="flex w-full justify-between items-center bg-green-100 shadow-md py-3 px-10">
-      {/* Logo */}
-      <Link to="/">
-        <div className="flex gap-1 justify-center items-center cursor-pointer">
-          <img src={LogoImg} alt="logo-image" className="h-6 w-6" />
-          <p className="text-lg font-semibold text-green-600 hover:text-green-700 transition ease-in-out">
-            ToDoSome
-          </p>
-        </div>
-      </Link>
-
-      {/* Navigation Menu */}
-      <div className="flex gap-6 justify-center items-center text-green-900 font-semibold">
-        <Link to="/" className="text-sm hover:underline">
-          My ToDo
-        </Link>
+    <div className="navbar bg-base-100 shadow-md px-4">
+      <div className="flex-1 flex items-center gap-2">
+        <img src={LogoImg} alt="logo-image" className="h-6 w-6" />
+        <span className="font-bold text-xl text-green-900">ToDoSome</span>
+      </div>
+      <div className="flex-none flex items-center gap-2">
+        <Link to="/" className="bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition font-medium">My ToDo</Link>
         {user ? (
-          <div className="flex items-center gap-3">
-            <a
-              href="/user-info"
-              className="bg-green-200 text-green-900 text-sm py-2 px-4 rounded-md hover:bg-green-300 transition ease-in-out"
-            >
-              My Profile
-            </a>
+          <>
+            <Link to="/user-info" className="bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition font-medium">My Profile</Link>
             {user.photoURL ? (
-              <img
-                src={user?.photoURL}
-                alt="profile"
-                className="w-8 h-8 rounded-full"
-              />
+              <div className="avatar">
+                <div className="w-8 rounded-full">
+                  <img src={user?.photoURL} alt="profile" />
+                </div>
+              </div>
             ) : (
-              <div className="w-8 h-8 rounded-full bg-green-800 text-white flex items-center justify-center font-semibold">
-                {user && user.email ? user.email.charAt(0).toUpperCase() : ''}
+              <div className="avatar placeholder">
+                <div className="bg-neutral text-neutral-content rounded-full w-8">
+                  <span className="text-xs">{user && user.email ? user.email.charAt(0).toUpperCase() : ''}</span>
+                </div>
               </div>
             )}
             <button
               onClick={handleLogout}
-              className="bg-red-600 text-white text-sm py-2 px-4 rounded-md hover:bg-red-500 transition ease-in-out"
+              className="btn btn-outline btn-error btn-sm ml-2"
             >
               Logout
             </button>
-          </div>
+          </>
         ) : (
-          <a
-            href="/signin"
-            className="bg-green-800 text-white text-sm py-2 px-6 rounded-md hover:bg-green-700 transition ease-in-out"
-          >
-            Login
-          </a>
+          <Link to="/signin" className="bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition">Login</Link>
         )}
       </div>
-    </nav>
+    </div>
   );
 };
 

@@ -46,7 +46,7 @@ const MyTaskComponent = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col gap-4">
       {loading && <p className="text-gray-600">Loading tasks...</p>}
 
       {!loading && tasks.length === 0 && (
@@ -57,27 +57,27 @@ const MyTaskComponent = () => {
         tasks.map((task) => (
           <div
             key={task._id}
-            className="flex flex-col gap-2 mt-2 p-3 text-white bg-green-700 rounded-md shadow-md"
+            className="card bg-base-200 shadow-md border border-base-300"
           >
-            <h1 className="text-xl font-semibold mb-2">{task.todo_name}</h1>
-            <p className="text-sm text-gray-100">{task.todo_desc}</p>
-
-            <div className="flex w-full justify-end items-center gap-4 mt-4">
-              <button
-                className="btn btn-primary text-white flex gap-1 px-3"
-                onClick={() => handleEdit(task)}
-              >
-                <FaRegEdit className="text-base" />
-                Edit
-              </button>
-
-              <button
-                className="btn btn-error bg-red-600 text-white flex gap-1 px-3"
-                onClick={() => handleDelete(task._id)}
-              >
-                <MdDeleteOutline className="text-lg" />
-                Delete
-              </button>
+            <div className="card-body p-4">
+              <h1 className="card-title text-lg font-semibold mb-1 text-green-900">{task.todo_name}</h1>
+              <p className="text-sm text-gray-700 mb-2">{task.todo_desc}</p>
+              <div className="card-actions justify-end gap-2 mt-2">
+                <button
+                  className="bg-green-600 text-white p-2 rounded-md hover:bg-green-700 transition flex gap-1"
+                  onClick={() => handleEdit(task)}
+                >
+                  <FaRegEdit className="text-base" />
+                  Edit
+                </button>
+                <button
+                  className="btn btn-error btn-sm flex gap-1"
+                  onClick={() => handleDelete(task._id)}
+                >
+                  <MdDeleteOutline className="text-lg" />
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         ))}
