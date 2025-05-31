@@ -1,12 +1,18 @@
-FROM node:16-alpine
+# Base image
+FROM node:alpine3.20
 
+# Set working directory
 WORKDIR /app
 
+# Copy package files and install dependencies
 COPY package*.json ./
 RUN npm install
 
+# Copy application files
 COPY . .
 
-EXPOSE 5000
+# Expose the application port (replace it with the server_port you received)
+EXPOSE 3123
 
+# Command to run the application
 CMD ["npm", "start"]
