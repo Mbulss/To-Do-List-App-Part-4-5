@@ -8,6 +8,7 @@ import ActivationPage from "./pages/ActivationPage";
 import SignupConfirmationPage from "./pages/SignupConfirmationPage";
 import UserInfoComponent from "./components/UserInfoComponent";
 import NavbarComponent from "./components/NavbarComponent";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -17,12 +18,23 @@ function App() {
         <NavbarComponent />
         <main className="container mx-auto px-4 py-8">
           <Routes>
-            <Route path="/" element={<HomePage />} />
             <Route path="/signin" element={<LoginPage />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/user/activate/:token?" element={<ActivationPage />} />
             <Route path="/signup-success" element={<SignupConfirmationPage />} />
-            <Route path="/user-info" element={<UserInfoComponent />} />
+            
+            {/* Protected Routes */}
+            <Route path="/" element={
+              <ProtectedRoute>
+                <HomePage />
+              </ProtectedRoute>
+            } />
+            <Route path="/user-info" element={
+              <ProtectedRoute>
+                <UserInfoComponent />
+              </ProtectedRoute>
+            } />
+            
             <Route path="*" element={<Navigate to="/signin" />} />
           </Routes>
         </main>
